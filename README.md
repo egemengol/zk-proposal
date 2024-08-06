@@ -82,7 +82,7 @@ First two weeks will be spent on scanning the data from passports via the mobile
 
 As the next step, the mobile application proof generation capabilities will be worked on, we plan to spend two weeks here experimenting.
 
-In parallel, the SDK will start to be developed here to generate and validate proofs with simple conditions. At this point, we would welcome any comments or community audits on the soundness of our approach, proof generation and validation in particular. We would love to have some support from the community on this issue.
+In parallel, the SDK will start to be developed here to generate and validate proofs with simple conditions. At this point, we would welcome any comments or community audits on the soundness of our approach, proof generation and validation in particular. We would love to have some support from the community on this issue, and would welcome any support from o1labs and Mina Foundation.
 
 If mobile o1js experiment is successful, we would have a working prototype at six weeks, capable of generating and validating proofs with simple conditions, but without all the bells and whistles.
 
@@ -90,12 +90,12 @@ If mobile is unable to support our needs, we will pivot to the extension and the
 
 After the working prototype, we would work on refining the communication between the different devices, between mobile app and either a zkApp or the extension. We would work on improving the SDK between, including supporting more complex proof requirements. We would also hunt bugs and edge cases. We would also write the documentation at this point.
 
-We will create a bounty program that rewards users who report errors, which will give us the ability that as individuals we cannot possibly have for edge case detection, since everyone only has limited access to different passports. Also we believe this will result in a healthy community engagement and bootstrap the adoption.
+We will create a bounty program that rewards users who report errors, which will give us the ability that as individuals we cannot possibly have for edge case detection, since everyone only has limited access to different passports. Also we believe this will result in a healthy community engagement and bootstrap adoption.
 
 We plan to finish either at 3 months in the case of mobile native approach, or 4 months in the case of the extension.
 
 ## Responsibilities and Budget
-Developer: Mehmet Fatih Görgünoğlu
+Developer: [Mehmet Fatih Görgünoğlu](https://github.com/Thedexplorer)
 - passport communication on mobile
 - compiling and running o1js on mobile
 - possibly developing the extension
@@ -105,12 +105,20 @@ Developer: [Egemen Göl](https://github.com/egemengol)
 - proof generation and validation with o1js
 - building the SDK to be used for mobile and zkApp, and possibly extension
 - working on the secure communication between devices
+- Telegram: @egemengol
+- Email: egemengol@gmail.com
+
+Main Contact Person: [Emre Akbas](https://github.com/EmrePiconbello)
+- project management
+- external communication
+- Telegram: @E1piconbello
+- Discord: e1emre
+- Email: emre@piconbello.com
 
 Maintaining scope includes:
 - Maintaining mobile apps on two different platforms
 - Possibly maintaining the extension
 - Extending the passport compatibility support over time
-- Integrating with the Attestation API when it gets released
 
 Developer budget: 7500$ per month per developer including tax  
 Legal: 5000$  
@@ -119,6 +127,8 @@ Bug bounty budget: 3000$
 Maintaining budget: 2000$ per month, for a year after completion
 
 Total budget = 84500$
+
+Recipient Mina address: TBD
 
 ## Possible Next Steps
 While our approach proves that the data is not modified and not expired, it does not discriminate against stolen passports.
