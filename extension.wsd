@@ -1,0 +1,43 @@
+@startuml setup
+!theme blueprint
+skinparam dpi 300
+
+actor "User" as U
+participant "Mobile App" as A
+participant "Passport" as P
+participant "Browser\nExtension" as X
+
+activate A
+U -> A: Put MRZ info
+activate P
+A <-> P: Scan the passport
+deactivate P
+
+activate X
+A -> X: Send the credentials
+deactivate X
+
+A -> U: Setup complete
+deactivate A
+@enduml
+
+
+@startuml usage
+!theme blueprint
+skinparam dpi 300
+
+actor "User" as U
+participant "zkApp" as Z
+participant "Browser\nExtension" as X
+
+activate Z
+U -> Z: Attempt transaction\nwith passport validation
+activate X
+Z -> X: Request proof\nspecifying requirements
+X -> Z: Generate proof
+deactivate X
+
+Z -> Z: Validate proof in transaction\nas a recursive proof
+Z -> U: Transaction with validation done
+
+@enduml

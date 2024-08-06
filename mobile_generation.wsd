@@ -1,0 +1,23 @@
+@startuml mobile_generation
+!theme blueprint
+skinparam dpi 300
+
+actor "User" as U
+participant "zkApp" as Z
+participant "Mobile App" as A
+
+activate Z
+
+U -> Z: Attempt transaction\nwith passport validation
+
+activate A
+Z -> A: Request proof\nspecifying requirements
+A -> A: Scan passport if necessary
+A -> Z: Respond with proof
+deactivate A
+
+Z -> Z: Validate proof in transaction\nas a recursive proof
+Z -> U: Transaction with validation done
+deactivate Z
+
+@enduml

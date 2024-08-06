@@ -1,0 +1,64 @@
+@startuml icao
+!theme blueprint
+skinparam dpi 300
+
+actor "User" as U
+participant "Mobile App" as A
+participant "Passport" as P
+
+activate A
+
+U -> A: Put MRZ info in
+
+activate P
+
+note over A, P: Establish a connection
+
+alt Requires PACE
+    note over A, P: Password Authenticated Connection Establishment (PACE)
+
+    A -> P: Send encrypted nonce
+    P -> A: Send mapped nonce
+    A -> P: Send ephemeral public key
+    P -> A: Send ephemeral public key
+    A <-> P: Perform key agreement
+    A -> P: Send authentication token
+    P -> A: Send authentication token
+
+else Does not require PACE
+    note over A, P: Basic Access Control (BAC)
+
+    A -> A: Generate inputs from MRZ
+    A -> P: Request challange
+    A -> A: Solve challange
+    A -> P: Request session key
+    A -> A: Verify session key
+end
+
+note over A, P: Scan the Logical Data Store (LDS)
+loop 
+    A -> P: Request section
+    P -> A: Respond with data
+end
+
+note over A, P: Passive Authentication (PA)
+
+A -> P: Request Document Security Object
+A -> A: Verify
+note right of A: App has public key now,\nalongside all the user data
+
+note over A, P: Active Authentication (AA)
+
+A -> P: Send random challange
+P -> A: Signed response
+A -> A: Verify the response with the public key
+
+deactivate P
+
+note over A: Store passport data, encrypted
+
+A -> U: Passport scan complete
+
+deactivate A
+
+@enduml
