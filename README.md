@@ -42,7 +42,7 @@ o1js currently supports [RSA, ECDSA, SHA-256, SHA-384, SHA-512], which does not 
 
 ## Architecture
 ### Plan A
-There must be a NFC capable device to scan the passport, we plan to support Android and iOS devices via a React Native mobile application, possibly making use of Hermes and Metro.
+There must be a NFC capable device to scan the passport, we plan to support Android and iOS devices via a React Native mobile application, possibly making use of Babel and Metro.
 
 This mobile app will handle all communication with the passport, then it will store the credentials it scanned using encrypted storage feature of the OS, requiring only one scan for proofs to be generated. We will probably make use of the well built [NFC scanner module](https://github.com/zk-passport/openpassport/blob/main/app/src/utils/nfcScanner.ts) from zkPassport team.
 
@@ -50,11 +50,11 @@ The app will also produce o1js proofs on demand, for the given constrictions the
 
 The zkApp will request a proof like "being over 18 years of age and being a citizen of EU" from the mobile app, and will receive a proof to be validated in a recursive manner in a Mina transaction.
 
-The communication line must be secure, preferably peer-to-peer. We are thinking of supporting WebRTC or simple file transfer, we believe it is not critical to the proposal at the moment, as an implementation detail.
+The communication line must be secure, preferably peer-to-peer. We are thinking of supporting WebRTC or simple file transfer, we believe it is not critical to the proposal at the moment, as an implementation detail. While off-chain storage is not in scope at the moment, we will decide on this during development.
 
 <img src="./out/mobile_generation/mobile_generation.png" alt="Mobile generation diagram" style="width: 80%" />
 
-We are aware of the problems one might face to run o1js on mobile, we will try Hermes and Metro first, avoiding the memory limitation of a WebView implementation. However if that fails, we have a plan B as follows.
+We are aware of the problems one might face to run o1js on mobile, we will try Babel and Metro first, avoiding the memory limitation of a WebView implementation. However if that fails, we have a plan B as follows.
 
 
 ### Plan B
@@ -82,7 +82,7 @@ First two weeks will be spent on scanning the data from passports via the mobile
 
 As the next step, the mobile application proof generation capabilities will be worked on, we plan to spend two weeks here experimenting.
 
-In parallel, the SDK will start to be developed here to generate and validate proofs with simple conditions. At this point, we would welcome any comments or community audits on the soundness of our approach, proof generation and validation in particular.
+In parallel, the SDK will start to be developed here to generate and validate proofs with simple conditions. At this point, we would welcome any comments or community audits on the soundness of our approach, proof generation and validation in particular. We would love to have some support from the community on this issue.
 
 If mobile o1js experiment is successful, we would have a working prototype at six weeks, capable of generating and validating proofs with simple conditions, but without all the bells and whistles.
 
@@ -90,7 +90,7 @@ If mobile is unable to support our needs, we will pivot to the extension and the
 
 After the working prototype, we would work on refining the communication between the different devices, between mobile app and either a zkApp or the extension. We would work on improving the SDK between, including supporting more complex proof requirements. We would also hunt bugs and edge cases. We would also write the documentation at this point.
 
-We will create a bounty program that rewards users who report errors, which will give us the ability that as individuals we cannot possibly have for edge case detection, since everyone only has limited access to different passports.
+We will create a bounty program that rewards users who report errors, which will give us the ability that as individuals we cannot possibly have for edge case detection, since everyone only has limited access to different passports. Also we believe this will result in a healthy community engagement and bootstrap the adoption.
 
 We plan to finish either at 3 months in the case of mobile native approach, or 4 months in the case of the extension.
 
@@ -99,15 +99,16 @@ Developer: Mehmet Fatih Görgünoğlu
 - passport communication on mobile
 - compiling and running o1js on mobile
 - possibly developing the extension
+- UI/UX for both mobile and possibly extension
 
-Developer: Egemen Göl
+Developer: [Egemen Göl](https://github.com/egemengol)
 - proof generation and validation with o1js
 - building the SDK to be used for mobile and zkApp, and possibly extension
 - working on the secure communication between devices
 
 Maintaining scope includes:
 - Maintaining mobile apps on two different platforms
-- Possibly maintaining extension on two different marketplaces
+- Possibly maintaining the extension
 - Extending the passport compatibility support over time
 - Integrating with the Attestation API when it gets released
 
@@ -117,7 +118,7 @@ Project Manager: 3000$ per month including tax
 Bug bounty budget: 3000$  
 Maintaining budget: 2000$ per month, for a year after completion
 
-Total = 7500 * 2 * 3.5 + 5000 + 3000 + 2000 * 12 = 84500$
+Total budget = 84500$
 
 ## Possible Next Steps
 While our approach proves that the data is not modified and not expired, it does not discriminate against stolen passports.
